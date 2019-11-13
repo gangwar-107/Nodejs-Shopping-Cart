@@ -1,6 +1,7 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
+var unicorn = require('unicorn');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var expressHbs = require('express-handlebars')
@@ -15,7 +16,7 @@ var MongoStore = require('connect-mongo')(session);
 
 var app = express();
 
-mongoose.connect('mongodb://localhost:27017/shopping',{
+mongoose.connect(process.env.DATABASE_URL,{
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false
@@ -32,7 +33,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(validator())
 app.use(cookieParser());
 app.use(session({
-  secret: 'mysupersecret',
+  secret: process.env.SECRET_TOKEN,
   resave: false,
   saveUninitialized:false,
   store: new MongoStore({mongooseConnection: mongoose.connection}),
