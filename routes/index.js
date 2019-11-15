@@ -10,15 +10,10 @@ var Electronic = require('../models/electronic')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  Product.find(function(err,docs) {
+
   var successMsg = req.flash('success')[0];
-  var productChunks = [];
-  var chunkSize = 3;
-  for (var i = 0; i < docs.length; i += chunkSize) {
-    productChunks.push(docs.slice(i,i+chunkSize));
-  }
-    res.render('shop/index', { title: 'shopping cart', products: productChunks,successMsg: successMsg, noMessages: !successMsg});
-  });
+    res.render('shop/index', { title: 'shopping cart', successMsg: successMsg, noMessages: !successMsg});
+  
 });
 
 router.get('/shopping/games/', function(req, res, next) {
@@ -60,7 +55,7 @@ router.get('/add-to-cart/games/:id',function(req,res,next){
   for (var i = 0; i < docs.length; i += chunkSize) {
     productChunks.push(docs.slice(i,i+chunkSize));
   }
-    res.render('shop/games', { title: 'shopping cart', products: productChunks,successMsg: successMsg, noMessages: !successMsg});
+    res.render('shop/books', { title: 'shopping cart', products: productChunks,successMsg: successMsg, noMessages: !successMsg});
   });
 });
 
@@ -102,6 +97,7 @@ router.get('/add-to-cart/sports/:id',function(req,res,next){
     if(err){
       return res.redirect('/')
     }
+    console.log(product)
     cart.add(product, product.id)
     req.session.cart = cart
    // console.log(cart.generateArray())
@@ -124,7 +120,7 @@ router.get('/add-to-cart/sports/:id',function(req,res,next){
   });
 });
 
-router.get('/add-to-cart/sports/:id',function(req,res,next){
+router.get('/add-to-cart/electronics/:id',function(req,res,next){
   var productId = req.params.id
   var cart = new Cart(req.session.cart ? req.session.cart : {})
  
@@ -138,21 +134,6 @@ router.get('/add-to-cart/sports/:id',function(req,res,next){
     res.redirect('/shopping/electronics/')
   })
  })
-
-router.get('/add-to-cart/:id',function(req,res,next){
- var productId = req.params.id
- var cart = new Cart(req.session.cart ? req.session.cart : {})
-
- Product.findById(productId, function(err, product){
-   if(err){
-     return res.redirect('/')
-   }
-   cart.add(product, product.id)
-   req.session.cart = cart
-  // console.log(cart.generateArray())
-   res.redirect('/')
- })
-})
 
 router.get('/reduce/:id',function(req,res,next){
   var productId = req.params.id

@@ -15,7 +15,10 @@ router.get('/profile', isLoggedIn ,function(req, res, next){
         return res.write('!Error')
       }
       var cart;
-      var name = orders[0].name
+      if(orders.length !== 0)
+        {
+          var name = orders[0].name
+        }
       orders.forEach(function(order){
         cart = new Cart(order.cart)
         // creating new field in order --> order.items

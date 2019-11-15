@@ -133,7 +133,7 @@ a:hover {
 }
 
 .row span{
-	padding: 20px 0 6px 0;
+	
 }
 
 /* Column Captions */
@@ -147,16 +147,15 @@ a:hover {
 }
 
 .columnCaptions span:first-child{
-	padding-left:8px;
+	
 }
 
 .columnCaptions span{
-	padding: 0 21px 0 0;
+
 }
 
 .columnCaptions span:last-child{
-	float: right;
-	padding-right: 72px;
+	
 }
 
 
@@ -208,10 +207,6 @@ a:hover {
 
 /* Totals */
 
-
-.totals span{
-	padding: 40px 15px 40px 0;
-}
 
 .totals .price{
 	float: left;
@@ -343,12 +338,11 @@ a:hover {
 	}
 
 	.columnCaptions span{
-		padding: 0 21px 0 0;
+		
 	}
 
 	.columnCaptions span:last-child{
-		float: right;
-		padding-right: 42px;
+		
 	}
 
 	.row{
