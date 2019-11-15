@@ -1,7 +1,7 @@
 var Product = require('../models/product');
 
 var mongoose = require('mongoose');
-mongoose.connect(process.env.DATABASE_URL,{
+mongoose.connect('mongodb://127.0.0.1:27017/shopping',{
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false
@@ -39,6 +39,7 @@ var products = [new Product({
     price: 14
 })];
 
+
 var done = 0;
 for (var i=0;i<products.length;i++){
     products[i].save(function(err, res){
@@ -49,6 +50,7 @@ for (var i=0;i<products.length;i++){
     });
 
 }
+
 
 function exit(){
     mongoose.disconnect();

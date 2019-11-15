@@ -1,12 +1,16 @@
 var express = require('express');
 var router = express.Router();
 var Product = require('../models/product');
+var Game = require('../models/game');
 var Cart = require('../models/cart')
 var Order = require('../models/order')
+var Book = require('../models/book')
+var Sport = require('../models/sport')
+var Electronic = require('../models/electronic')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  Product.find(function(err,docs){
+  Product.find(function(err,docs) {
   var successMsg = req.flash('success')[0];
   var productChunks = [];
   var chunkSize = 3;
@@ -16,6 +20,124 @@ router.get('/', function(req, res, next) {
     res.render('shop/index', { title: 'shopping cart', products: productChunks,successMsg: successMsg, noMessages: !successMsg});
   });
 });
+
+router.get('/shopping/games/', function(req, res, next) {
+  Game.find(function(err,docs) {
+  var successMsg = req.flash('success')[0];
+  var productChunks = [];
+  var chunkSize = 3;
+  console.log(docs)
+  for (var i = 0; i < docs.length; i += chunkSize) {
+    productChunks.push(docs.slice(i,i+chunkSize));
+  }
+    res.render('shop/games', { title: 'shopping cart', products: productChunks,successMsg: successMsg, noMessages: !successMsg});
+  });
+});
+
+router.get('/add-to-cart/games/:id',function(req,res,next){
+  var productId = req.params.id
+  var cart = new Cart(req.session.cart ? req.session.cart : {})
+ 
+  Game.findById(productId, function(err, product){
+    if(err){
+      return res.redirect('/')
+    }
+    cart.add(product, product.id)
+    req.session.cart = cart
+   // console.log(cart.generateArray())
+    res.redirect('/shopping/games/')
+  })
+ })
+
+
+ // books
+ router.get('/shopping/books/', function(req, res, next) {
+  Book.find(function(err,docs) {
+  var successMsg = req.flash('success')[0];
+  var productChunks = [];
+  var chunkSize = 3;
+  console.log(docs)
+  for (var i = 0; i < docs.length; i += chunkSize) {
+    productChunks.push(docs.slice(i,i+chunkSize));
+  }
+    res.render('shop/games', { title: 'shopping cart', products: productChunks,successMsg: successMsg, noMessages: !successMsg});
+  });
+});
+
+router.get('/add-to-cart/books/:id',function(req,res,next){
+  var productId = req.params.id
+  var cart = new Cart(req.session.cart ? req.session.cart : {})
+ 
+  Book.findById(productId, function(err, product){
+    if(err){
+      return res.redirect('/')
+    }
+    cart.add(product, product.id)
+    req.session.cart = cart
+   // console.log(cart.generateArray())
+    res.redirect('/shopping/books/')
+  })
+ })
+
+ // Sport
+
+ router.get('/shopping/sports/', function(req, res, next) {
+  Sport.find(function(err,docs) {
+  var successMsg = req.flash('success')[0];
+  var productChunks = [];
+  var chunkSize = 3;
+  console.log(docs)
+  for (var i = 0; i < docs.length; i += chunkSize) {
+    productChunks.push(docs.slice(i,i+chunkSize));
+  }
+    res.render('shop/sports', { title: 'shopping cart', products: productChunks,successMsg: successMsg, noMessages: !successMsg});
+  });
+});
+
+router.get('/add-to-cart/sports/:id',function(req,res,next){
+  var productId = req.params.id
+  var cart = new Cart(req.session.cart ? req.session.cart : {})
+ 
+  Sport.findById(productId, function(err, product){
+    if(err){
+      return res.redirect('/')
+    }
+    cart.add(product, product.id)
+    req.session.cart = cart
+   // console.log(cart.generateArray())
+    res.redirect('/shopping/sports/')
+  })
+ })
+
+ // Electronics
+
+ router.get('/shopping/electronics/', function(req, res, next) {
+  Electronic.find(function(err,docs) {
+  var successMsg = req.flash('success')[0];
+  var productChunks = [];
+  var chunkSize = 3;
+  console.log(docs)
+  for (var i = 0; i < docs.length; i += chunkSize) {
+    productChunks.push(docs.slice(i,i+chunkSize));
+  }
+    res.render('shop/electronics', { title: 'shopping cart', products: productChunks,successMsg: successMsg, noMessages: !successMsg});
+  });
+});
+
+router.get('/add-to-cart/sports/:id',function(req,res,next){
+  var productId = req.params.id
+  var cart = new Cart(req.session.cart ? req.session.cart : {})
+ 
+  Electronic.findById(productId, function(err, product){
+    if(err){
+      return res.redirect('/')
+    }
+    cart.add(product, product.id)
+    req.session.cart = cart
+   // console.log(cart.generateArray())
+    res.redirect('/shopping/electronics/')
+  })
+ })
 
 router.get('/add-to-cart/:id',function(req,res,next){
  var productId = req.params.id

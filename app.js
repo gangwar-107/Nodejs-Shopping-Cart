@@ -16,7 +16,7 @@ var MongoStore = require('connect-mongo')(session);
 
 var app = express();
 
-mongoose.connect(process.env.DATABASE_URL,{
+mongoose.connect('mongodb://127.0.0.1:27017/shopping',{
   useNewUrlParser: true,
   useCreateIndex: true,
   useFindAndModify: false

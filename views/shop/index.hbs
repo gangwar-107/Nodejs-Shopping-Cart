@@ -5,23 +5,47 @@
         </div>
     </div>
 </div>
-
-{{# each products}}
-<div class="row">
-  {{# each this}}
-  <div class="col-sm-6 col-md-4">
-    <div class="thumbnail">
-      <img src="{{this.imagePath}}" alt="..." class="img-responsive">
-      <div class="caption">
-        <h3>{{this.title}}</h3>
-        <p class="description">{{this.description}}</p>
-        <div class="clearfix">
-            <div class="price pull-left">${{this.price}}</div>
-        <a href = "/add-to-cart/{{this._id}}" class="btn btn-success pull-right" role="button">Add To CART</a>
+		
+		<div class="container text-center">
+		<div class="col-md-6 col-sm-12">		
+        <div>
+          <h1>My Shopping Cart</h1>
+          <img src="https://www.freeiconspng.com/uploads/cart-icon-10.png" alt="">
         </div>
-      </div>
-    </div>
-  </div>
-  {{/each}}
-</div>
-{{/each}}
+		</div>
+			
+			<div class="col-md-6 col-sm-12 text-left">
+         <h2>Available Products</h2>
+				<ul>
+					<li class="row">
+						<span class="itemName">Computer Science Books</span>
+					</li>
+					<li class="row">
+						<span class="itemName">Computer Games</span>				
+					</li>
+					<li class="row">
+						<span class="itemName">Electronic Appliances</span>
+					</li>
+					<li class="row">
+						<span class="itemName">Sports Accessories</span>				
+					</li>
+          <li class="row">
+						<span class="itemName">Home &amp; Furniture</span>				
+					</li>
+				</ul>
+        <div class="container" style="height: 25px;"></div>
+        <p>
+					Frontend of this shopping cart is developed in <b>HTML, CSS, Bootstrap</b> and hbs templating engine. And Backend is developed in <b>Nodejs</b> with <b>express Js</b>. I used <b>NOSQL MongoDb database</b> to store products and users information.For the authentication <b>Passport</b> middleware is used. For purchasing the item <b>Stripe</b> is used as 3rd party.
+				</p>
+			</div>
+
+		</div>
+
+		<!-- The popover content -->
+
+		<div id="popover" style="display: none">
+			<a href="#"><span class="glyphicon glyphicon-pencil"></span></a>
+			<a href="#"><span class="glyphicon glyphicon-remove"></span></a>
+		</div>
+		
+		<!-- JavaScript includes -->
