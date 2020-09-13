@@ -6,9 +6,9 @@ If a customer wants to purchase something then he has to first login with his ac
 We also maintained the history of orders of a customer he has made so far.
 
 ## Technologies Used
-# Frontend : HTML, CSS, Bootstrap
-# Backend : Nodejs
-# Database : For storing the information about users,products and their orders I used MongoDB database.
+#### Frontend : HTML, CSS, Bootstrap
+#### Backend : Nodejs
+#### Database : For storing the information about users,products and their orders I used MongoDB database.
 
 ## Screenshots of APP
 
